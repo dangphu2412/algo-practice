@@ -1,22 +1,31 @@
 
 /**
  * @param {number[]} nums
+ * @return {number}
  */
 var removeDuplicates = function(nums) {
-  // Iterate over nums
-  // if element is new then put into map and also result
-  // iterate remaining from size of result to nums length and fill with character
-  const existedMap = {};
-  const result = [];
+  // Remove duplicated values in nums and move the pointer of not duplicated element to the next position
+  // -> use 1 pointer to traverse, 1 pointer to track the non-duplicate index
+  // return duplicated counter
+  if (!nums) return 0;
+  if (nums.length === 1) return 1;
+
+  let head = 0;
 
   for (let i = 0; i < nums.length; i++) {
-    if (!existedMap[nums[i]]) {
-      existedMap[nums[i]] = true;
-      result.push(nums[i]);
+    if (nums[i] !== nums[i+1]) {
+      head++;
+      nums[head] = nums[i+1];
     }
   }
 
-  return result;
-};
+  for (let i = head; i < nums.length; i++) {
+    nums[i] = NaN;
+  }
 
-console.log(removeDuplicates([1,1,2]))
+  return head;
+};
+const input = [0,0,1,1,1,2,2,3,3,4];
+
+console.log(removeDuplicates(input))
+console.log(input)
