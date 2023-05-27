@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./unique-array');
+require('./addBinaray');
 
 // console.log(atoi('123'));
 // const k = {
