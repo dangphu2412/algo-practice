@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./addBinaray');
+require('./climbStair');
 
 // console.log(atoi('123'));
 // const k = {
