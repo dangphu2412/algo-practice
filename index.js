@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./climbStair');
+require('./symmetricTree');
 
 // console.log(atoi('123'));
 // const k = {
