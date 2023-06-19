@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./symmetricTree');
+require('./isBalancedTree');
 
 // console.log(atoi('123'));
 // const k = {
