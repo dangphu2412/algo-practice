@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./isBalancedTree');
+require('./pascal-triangle-2');
 
 // console.log(atoi('123'));
 // const k = {
