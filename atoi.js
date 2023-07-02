@@ -1,45 +1,59 @@
-/**
- *
- * @param {string} s
- * Ignore leading white space. For example: ___12
- * Consider negative: +, -. There is no character start -> +
- * Next character is non-digit then stop
- */
-
 const MIN_INT = -Math.pow(2, 31);
 const MAX_INT = Math.pow(2, 31) - 1;
 
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var myAtoi =  function atoi(s) {
+  let numberQueue = [];
 
-function atoi(s) {
-  s = s.trimStart();
+  let isPositive = true;
+  let isScanFirstSign = true;
+  let isScanningLeadingSpace = true;
 
-  const flag = !s.startsWith('-') ? 1 : -1;
-  const startIndex = ['+', '-'].includes(s[0]) ? 1 : 0;
+  for (let i = 0; i < s.length; i++) {
+    if (isScanningLeadingSpace && s.charAt(i) === " ") {
+      continue;
+    }
 
-  let result = 0;
+    if (isScanningLeadingSpace && s.charAt(i) !== " ") {
+      isScanningLeadingSpace = false;
+    }
 
-  for (let i = startIndex; i < s.length; i++) {
-    const scanningChar = s.charAt(i);
-
-    if (!/[0-9]/.test(scanningChar)) {
+    if (!isScanningLeadingSpace && s.charAt(i) === " ") {
       break;
     }
 
-    result = result * 10 + Number(scanningChar);
+    if (isScanFirstSign) {
+      isScanFirstSign = false;
+      isPositive = isPositive = !(s.charAt(i) === "-");
+
+      if (s.charAt(i) === "-" || s.charAt(i) === "+") {
+        continue;
+      }
+    }
+
+    if (!/[0-9]/.test(s.charAt(i))) {
+      break;
+    }
+
+    numberQueue.push(Number(s.charAt(i)));
   }
 
+  let total = 0;
 
-  if (result > MAX_INT) {
-    return MAX_INT;
+  for (let i = 0; i < numberQueue.length; i++) {
+    const current = total * 10 + numberQueue[i] * (isPositive ? 1 : -1);
+
+    if (current > MAX_INT) return MAX_INT;
+    if (current < MIN_INT) return MIN_INT;
+
+    total = current;
   }
 
-  if (result < MIN_INT) {
-    return MIN_INT;
-  }
-
-  return result * flag;
+  return total;
 }
 
-
-module.exports = atoi
+console.log(myAtoi("    +1 234"));
 

@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./pascal-triangle-2');
+require('./atoi');
 
 // console.log(atoi('123'));
 // const k = {
