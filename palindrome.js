@@ -9,13 +9,13 @@ var isPalindrome = function(s) {
   let head = 0;
   let tail = s.length - 1;
 
-  while (head <= tail) {
-    if (!/[A-Za-z]/.test(s.charAt(head))) {
+  while (head < tail) {
+    if (!/[A-Za-z0-9]/.test(s.charAt(head))) {
       head++;
       continue;
     }
 
-    if (!/[A-Za-z]/.test(s.charAt(tail))) {
+    if (!/[A-Za-z0-9]/.test(s.charAt(tail))) {
       tail--;
       continue;
     }
@@ -29,4 +29,4 @@ var isPalindrome = function(s) {
   return true;
 };
 
-console.log(isPalindrome("A man, a plan, a canal: Panama"))
+console.log(isPalindrome(" "))
