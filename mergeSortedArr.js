@@ -6,25 +6,48 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-  let scanner = m + n - 1;
-  m--;
-  n--;
+  const temps1 = nums1.slice(0, m);
+  let left = 0;
+  let right = 0;
+  let index = 0;
 
-  while (scanner >= 0) {
-    if (n < 0 || nums1[m] >= nums2[n]) {
-      nums1[scanner] = nums1[m];
-      m--;
-    } else {
-      nums1[scanner] = nums2[n];
-      n--;
+  if (n === 0) return;
+
+  while (index < m + n) {
+    if (!temps1.length) {
+      nums1[index] = nums2[right];
+      right++;
+      index++;
+      continue;
     }
 
-    scanner--;
+    if (right === n) {
+      nums1[index] = temps1[left];
+      left++;
+      index++;
+      continue;
+    }
+
+    if (left === m) {
+      nums1[index] = nums2[right];
+      right++;
+      index++;
+      continue;
+    }
+
+    if (temps1[left] < nums2[right]) {
+      nums1[index] = temps1[left];
+      left++;
+    } else {
+      nums1[index] = nums2[right];
+      right++;
+    }
+    index++;
   }
 };
 
-const nums1 = [1,2,3,0,0,0];
-const nums2 = [2,5,6];
-merge(nums1, 3, nums2, 3);
+const nums1 = [2,0];
+const nums2 = [1];
+merge(nums1, 1, nums2, 1);
 
 console.log(nums1)

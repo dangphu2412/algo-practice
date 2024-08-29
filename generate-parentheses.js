@@ -4,18 +4,24 @@
  */
 var generateParenthesis = function(n) {
   if (1 === n) return ['()'];
+  if (2 === n) return ['()()', '(())']; // (())() ()(()) (()()) ((())) ()()()
 
-  return [
-    ...generateParenthesis(n - 1)
-      .reduce((res, item) => {
-          res.add(`(${item})`);
-          res.add(`${item}()`);
-          res.add(`()${item}`);
+  const based = generateParenthesis(n - 1);
 
-          return res;
-        }, new Set())
-      .values()
-  ];
+  const results = new Set();
+
+  based.forEach(item => {
+    for (let i = 0; i < item.length; i++) {
+      if (item.charAt(i) === '(') {
+        results.add(item.slice(0, i + 1) + '()' + item.slice(i + 1));
+      }
+    }
+
+    results.add(`${item}()`);
+    results.add(`()${item}`);
+  });
+
+  return [...results];
 };
 
 console.log(generateParenthesis(3))

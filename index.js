@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./happy');
+require('./3sum');
 
 // console.log(atoi('123'));
 // const k = {
