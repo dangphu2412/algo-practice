@@ -1,5 +1,5 @@
 // const atoi = require('./atoi');
-require('./3sum');
+require('./link-list-palindrome');
 
 // console.log(atoi('123'));
 // const k = {
